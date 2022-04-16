@@ -1,10 +1,11 @@
 import React from 'react';
 import { Carousel } from 'react-bootstrap';
-import './Body.css'
+import Footer from '../Blogs/Footer/Footer';
+import './Home.css'
 
 const Body = () => {
     return (
-        <div>
+        <div className='mt-5'>
             <Carousel>
                 <Carousel.Item className='car-img'>
                     <img
@@ -52,7 +53,7 @@ const Body = () => {
                 </Carousel.Item>
 
             </Carousel>
-
+            <Footer></Footer>
         </div>
     );
 };

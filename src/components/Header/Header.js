@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Nav, Navbar } from 'react-bootstrap';
+import CustomLink from '../CustomLink/CustomLink';
 
 const Header = () => {
     return (
@@ -11,8 +12,9 @@ const Header = () => {
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="me-auto"></Nav>
                         <Nav>
+                            <Nav.Link href="#deets"><CustomLink to='/'>Home</CustomLink></Nav.Link>
                             <Nav.Link href="#deets">Services</Nav.Link>
-                            <Nav.Link href="#deets">Blogs</Nav.Link>
+                            <Nav.Link href="#deets"><CustomLink to='/Blogs'>Blogs</CustomLink></Nav.Link>
                             <Nav.Link href="#deets">About Me</Nav.Link>
                         </Nav>
                         <Navbar.Text>
