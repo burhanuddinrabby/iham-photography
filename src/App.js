@@ -7,6 +7,8 @@ import LoadServices from './components/Services/LoadServices';
 import About from './components/About/About';
 import NotFound from './components/NotFound/NotFound';
 import Footer from './components/Footer/Footer';
+import Login from './components/Login/Login/Login';
+import SignUp from './components/Login/SignUp/SignUp';
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
         <Route path="/blogs" element={<Blogs></Blogs>} />
         <Route path="/services" element={<LoadServices></LoadServices>} />
         <Route path="/about" element={<About></About>} />
+        <Route path="/login" element={<Login></Login>} />
+        <Route path="/signup" element={<SignUp></SignUp>} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer></Footer>

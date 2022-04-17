@@ -18,7 +18,7 @@ const Header = () => {
                             <CustomLink className='mx-2' to='/about'>About Me</CustomLink>
                         </Nav>
                         <Navbar.Text>
-                            <button>Login</button>
+                            <CustomLink to='/login'>Login</CustomLink>
                         </Navbar.Text>
                     </Navbar.Collapse>
                 </Container>
