@@ -15,7 +15,6 @@ import useServices from './hooks/useServices';
 
 function App() {
   const [services] = useServices();
-  services.map(service => console.log(service));
   return (
     <div className="App">
       <Header></Header>

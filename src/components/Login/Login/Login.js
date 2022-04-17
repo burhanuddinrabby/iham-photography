@@ -71,7 +71,7 @@ const Login = () => {
                     </Form.Group>
                     <br />
                     {error && <p className='text-danger'>{errorMessage} <br /></p>}
-                    <Button variant="primary" type="submit" disabled={!checked}>
+                    <Button className='d-block mx-auto px-5' variant="primary" type="submit" disabled={!checked}>
                         Login
                     </Button>
                     <br /><br />

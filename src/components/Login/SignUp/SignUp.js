@@ -1,14 +1,20 @@
 import React, { useState } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
-import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useSendEmailVerification } from 'react-firebase-hooks/auth';
 import Loading from '../Loading/Loading';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const SignUp = () => {
     const [checked, setChecked] = useState(false);
     const [errorMessage, setError] = useState('');
     const navigate = useNavigate();
+    const location = useLocation();
+    const from = location?.state?.from?.pathname || '/';
+
+    const [sendEmailVerification, sending] = useSendEmailVerification(auth);
     const [
         createUserWithEmailAndPassword,
         user,
@@ -22,14 +28,17 @@ const SignUp = () => {
     }
     if (user) {
         console.log(user.user);
-        navigate('/');
+        navigate(from, { replace: true });
     }
-    const submitValue = (e) => {
+    sending && toast('Sending...');;
+    const submitValue = async (e) => {
         e.preventDefault();
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
-        createUserWithEmailAndPassword(email, password);
+        await createUserWithEmailAndPassword(email, password);
+        sendEmailVerification();
+        toast('Verification Email Sent');
     }
     return (
         <div>
@@ -55,7 +64,7 @@ const SignUp = () => {
                     <Form.Group className="mb-3" controlId="formBasicCheckbox">
                         <Form.Check onClick={() => setChecked(!checked)} type="checkbox" label="I agree terms and condition" />
                     </Form.Group>
-                    <Button variant="primary" type="submit" disabled={!checked}>
+                    <Button className='d-block mx-auto px-5' variant="primary" type="submit" disabled={!checked}>
                         Register
                     </Button>
 
@@ -66,6 +75,7 @@ const SignUp = () => {
                     Already have an account? <Link to='/login'>Login</Link>
                 </Form>
             </Container>
+            <ToastContainer />
         </div>
     );
 };

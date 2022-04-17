@@ -4,12 +4,12 @@ import { Container, Nav, Navbar } from 'react-bootstrap';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import CustomLink from '../CustomLink/CustomLink';
-import './Header.css'
 const Header = () => {
     const [user] = useAuthState(auth);
     const logout = () => {
         signOut(auth);
     };
+    user ? console.log(user) : console.log('no user');
     return (
         <div>
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -26,9 +26,9 @@ const Header = () => {
                             <CustomLink className='mx-2' to='/Blogs'>Blogs</CustomLink>
                             <CustomLink className='mx-2' to='/about'>About Me</CustomLink>
                         </Nav>
-                        <Navbar.Text className='mt-3 ms-2 me-1 text-light'>
+                        <Navbar.Text className='mt-3 ms-2 me-1 text-primary'>
                             {
-                                user ? <p>{user.displayName || user.email}</p> : <p>Please</p>
+                                user ? <p>{(user.displayName || user.email).slice(0, 8).toUpperCase()}</p> : ''
                             }
                         </Navbar.Text>
                         <Navbar.Text>

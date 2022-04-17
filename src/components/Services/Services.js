@@ -20,7 +20,7 @@ const Services = ({ service }) => {
                     <Card.Text>
                         ${price} per hour
                     </Card.Text>
-                    <Button onClick={() => navigateToId(service.id)} variant="primary">Hire Me</Button>
+                    <Button className='d-block mx-auto px-3' onClick={() => navigateToId(service.id)} variant="primary">Hire Me</Button>
                 </Card.Body>
             </Card>
         </Col>
