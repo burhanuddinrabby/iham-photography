@@ -12,7 +12,7 @@ const SignUp = () => {
     const [errorMessage, setError] = useState('');
     const navigate = useNavigate();
     const location = useLocation();
-    const from = location?.state?.from?.pathname || '/';
+    const from = location?.state?.from?.pathname || '/services';
 
     const [sendEmailVerification, sending] = useSendEmailVerification(auth);
     const [
@@ -30,7 +30,7 @@ const SignUp = () => {
         console.log(user.user);
         navigate(from, { replace: true });
     }
-    sending && toast('Sending...');;
+    sending && toast('Sending...');
     const submitValue = async (e) => {
         e.preventDefault();
         const form = e.target;

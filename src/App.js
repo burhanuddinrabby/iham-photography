@@ -12,6 +12,7 @@ import SignUp from './components/Login/SignUp/SignUp';
 import RequireAuth from './components/RequireAuth/RequireAuth';
 import ServiceInfo from './components/ServiceInfo/ServiceInfo';
 import useServices from './hooks/useServices';
+import ForgetPass from './components/Login/ForgotPass/ForgetPass';
 
 function App() {
   const [services] = useServices();
@@ -24,6 +25,7 @@ function App() {
         <Route path="/blogs" element={<Blogs></Blogs>} />
         <Route path="/services" element={<LoadServices></LoadServices>} />
         <Route path="/about" element={<About></About>} />
+        <Route path="/forget-password" element={<ForgetPass></ForgetPass>} />
         <Route path="/service/:id" element={
           <RequireAuth>
             <ServiceInfo data={services}></ServiceInfo>

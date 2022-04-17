@@ -4,6 +4,8 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
 import Loading from '../Loading/Loading';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './Login.css'
 
 const Login = () => {
@@ -31,6 +33,7 @@ const Login = () => {
             errorMessage = error.message;
         }
     }
+    //navigating user to the previous page
     user && navigate(from, { replace: true });
     userByGoogle && navigate(from, { replace: true });
     //submitting and logging in with email and password
@@ -76,6 +79,8 @@ const Login = () => {
                     </Button>
                     <br /><br />
                     Don't have an account? <Link to='/signup'>Sign Up</Link>
+                    <br /><br />
+                    Forgot Password? <Link to='/forget-password'>Reset Password</Link>
                 </Form>
                 <div class="or-container">
                     <div></div>
@@ -83,8 +88,10 @@ const Login = () => {
                     <div></div>
                 </div>
                 {(loading || loadingViaGoogle) && <Loading />}
+                {(loading || loadingViaGoogle) && toast('Loading...')}
                 <button className='btn btn-primary mx-auto d-block px-5' onClick={handleSignInWithGoogle}>Sign in with Google</button>
             </Container>
+            <ToastContainer />
             <br />
         </div>
     );
