@@ -1,8 +1,13 @@
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { useParams } from 'react-router-dom';
+import auth from '../../firebase.init';
+import Loading from '../Login/Loading/Loading';
 import './ServiceInfo.css'
 const ServiceInfo = ({ data }) => {
     const { id } = useParams();
+    const [loading] = useAuthState(auth);
+    loading && <Loading></Loading>;
     const service = data.find(service => service.id == id);
     const { name, price, image } = service;
     return (

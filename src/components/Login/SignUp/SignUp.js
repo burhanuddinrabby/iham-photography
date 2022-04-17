@@ -3,7 +3,7 @@ import { Button, Container, Form } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
-import Loading from '../Loding/Loading';
+import Loading from '../Loading/Loading';
 
 const SignUp = () => {
     const [checked, setChecked] = useState(false);

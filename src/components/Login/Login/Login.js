@@ -1,22 +1,26 @@
 import React, { useState } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
-import { Link, useNavigate } from 'react-router-dom';
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
-import Loading from '../Loding/Loading';
+import Loading from '../Loading/Loading';
+import './Login.css'
 
 const Login = () => {
-    const [checked, setChecked] = useState(false);
-    let errorMessage;
-    const navigate = useNavigate();
+    const [signInWithGoogle, userByGoogle, loadingViaGoogle, errorByGoogle] = useSignInWithGoogle(auth);
     const [
         signInWithEmailAndPassword,
         user,
         loading,
         error,
     ] = useSignInWithEmailAndPassword(auth);
+    const [checked, setChecked] = useState(false);
+    const location = useLocation();
+    const from = location?.state?.from?.pathname || '/';
+    let errorMessage;
+    const navigate = useNavigate();
+    errorByGoogle && (errorMessage = errorByGoogle.message);
     if (error) {
-        console.log(error.code);
         if (error.message === 'Firebase: Error (auth/wrong-password).') {
             errorMessage = 'Wrong Password Please Try Again';
         }
@@ -27,16 +31,19 @@ const Login = () => {
             errorMessage = error.message;
         }
     }
-    if (user) {
-        console.log(user.user);
-        navigate('/');
-    }
+    user && navigate(from, { replace: true });
+    userByGoogle && navigate(from, { replace: true });
+    //submitting and logging in with email and password
     const submitValue = (e) => {
         e.preventDefault();
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
         signInWithEmailAndPassword(email, password);
+    }
+    //logging in with google
+    const handleSignInWithGoogle = () => {
+        signInWithGoogle();
     }
     return (
         <div>
@@ -62,15 +69,23 @@ const Login = () => {
                     <Form.Group className="mb-3" controlId="formBasicCheckbox">
                         <Form.Check onClick={() => setChecked(!checked)} type="checkbox" label="I agree terms and condition" />
                     </Form.Group>
+                    <br />
+                    {error && <p className='text-danger'>{errorMessage} <br /></p>}
                     <Button variant="primary" type="submit" disabled={!checked}>
                         Login
                     </Button>
                     <br /><br />
-                    {error && <p className='text-danger'>{errorMessage} <br /></p>}
                     Don't have an account? <Link to='/signup'>Sign Up</Link>
                 </Form>
-                {loading && <Loading />}
+                <div class="or-container">
+                    <div></div>
+                    <p>or</p>
+                    <div></div>
+                </div>
+                {(loading || loadingViaGoogle) && <Loading />}
+                <button className='btn btn-primary mx-auto d-block px-5' onClick={handleSignInWithGoogle}>Sign in with Google</button>
             </Container>
+            <br />
         </div>
     );
 };

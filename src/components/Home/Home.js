@@ -51,7 +51,6 @@ const Body = () => {
                         <p>Frame yourself traveling, having fun, nature etc.</p>
                     </Carousel.Caption>
                 </Carousel.Item>
-
             </Carousel>
             <LoadServices></LoadServices>
         </div>
