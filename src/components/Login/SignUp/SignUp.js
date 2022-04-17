@@ -1,17 +1,47 @@
 import React, { useState } from 'react';
-import { Button, Container, Form } from 'react-bootstrap';
+import { Button, Container, Form, Spinner } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-
+import auth from '../../../firebase.init';
+import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+const style = {
+    position: 'absolute',
+    height: '100vh',
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    top: '0',
+    left: '0',
+    background: '#000',
+    opacity: '0.2'
+}
 const SignUp = () => {
     const [checked, setChecked] = useState(false);
+    const [errorMessage, setError] = useState('');
+    const [
+        createUserWithEmailAndPassword,
+        user,
+        loading,
+        error,
+    ] = useCreateUserWithEmailAndPassword(auth);
+    if (error) {
+        console.log(error);
+        setError(error.message);
+        return;
+    }
+    if (user) {
+        console.log(user.user);
+    }
     const submitValue = (e) => {
         e.preventDefault();
         const form = e.target;
-        console.log(form.email.value, form.password.value);
+        const email = form.email.value;
+        const password = form.password.value;
+        createUserWithEmailAndPassword(email, password);
     }
     return (
         <div>
-            <div className='text-center my-5'>
+            <div className='text-center w-75 mx-auto my-5'>
                 <h1>Please Create An
                     <span className='text-primary'> Account</span> with valid information.
                 </h1>
@@ -36,6 +66,12 @@ const SignUp = () => {
                     <Button variant="primary" type="submit" disabled={!checked}>
                         Submit
                     </Button>
+
+                    {loading && <div style={style}>
+                        <Spinner animation="border" variant="warning" />
+                    </div>}
+
+                    {error && <p>{errorMessage}</p>}
                     <br /><br />
                     Already have an account? <Link to='/login'>Login</Link>
                 </Form>
