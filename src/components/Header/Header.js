@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import CustomLink from '../CustomLink/CustomLink';
-
+import './Header.css'
 const Header = () => {
     return (
         <div>
@@ -12,13 +12,13 @@ const Header = () => {
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="me-auto"></Nav>
                         <Nav>
-                            <Nav.Link href="#deets"><CustomLink to='/'>Home</CustomLink></Nav.Link>
-                            <Nav.Link href="#deets">Services</Nav.Link>
-                            <Nav.Link href="#deets"><CustomLink to='/Blogs'>Blogs</CustomLink></Nav.Link>
-                            <Nav.Link href="#deets">About Me</Nav.Link>
+                            <CustomLink className='mx-2' to='/'>Home</CustomLink>
+                            <CustomLink className='mx-2' to='/services'>Services</CustomLink>
+                            <CustomLink className='mx-2' to='/Blogs'>Blogs</CustomLink>
+                            <CustomLink className='mx-2' to='/about'>About Me</CustomLink>
                         </Nav>
                         <Navbar.Text>
-                            Signed in as: <a href="#login">Mark Otto</a>
+                            <button>Login</button>
                         </Navbar.Text>
                     </Navbar.Collapse>
                 </Container>

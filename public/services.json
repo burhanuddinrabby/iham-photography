@@ -1,0 +1,16 @@
+[
+    {
+        "id": 1,
+        "name": "Wedding Photography",
+        "image": "https://i.ibb.co/qxXxXyv/wedding-photography.jpg",
+        "price": "500",
+        "description": "Wedding Photography"
+    },
+    {
+        "id": 2,
+        "name": "Wild Life Photography",
+        "image": "https://i.ibb.co/qxXxXyv/wedding-photography.jpg",
+        "price": "300",
+        "description": "Wild Life Photography"
+    }
+]
