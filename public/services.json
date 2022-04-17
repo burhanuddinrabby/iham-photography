@@ -2,15 +2,43 @@
     {
         "id": 1,
         "name": "Wedding Photography",
-        "image": "https://i.ibb.co/qxXxXyv/wedding-photography.jpg",
+        "image": "https://i.ibb.co/9Hkbgjc/image.png",
         "price": "500",
-        "description": "Wedding Photography"
+        "description": "You can hire me as your wedding photographer. Capture your happy moment"
     },
     {
         "id": 2,
         "name": "Wild Life Photography",
-        "image": "https://i.ibb.co/qxXxXyv/wedding-photography.jpg",
+        "image": "https://i.ibb.co/9wcg7F4/image.png",
         "price": "300",
-        "description": "Wild Life Photography"
+        "description": "Wild life photography is a great way to capture the beauty of nature"
+    },
+    {
+        "id": 3,
+        "name": "Sports Photography",
+        "image": "https://i.ibb.co/L1XLMfk/image.png",
+        "price": "150",
+        "description": "Sports photography is a way to capture the legends in sports"
+    },
+    {
+        "id": 4,
+        "name": "Portrait Photography",
+        "image": "https://i.ibb.co/br9XFZj/image.png",
+        "price": "100",
+        "description": "You can hire me as your portrait photographer. Capture your beautiful face"
+    },
+    {
+        "id": 5,
+        "name": "Food Photography",
+        "image": "https://i.ibb.co/HGxFBcV/image.png",
+        "price": "300",
+        "description": "Food photography is a way to capture the food in your life"
+    },
+    {
+        "id": 6,
+        "name": "Travel Photography",
+        "image": "https://i.ibb.co/GVq8S4Y/image.png",
+        "price": "70",
+        "description": "Hire me to capture you at all the places you have visited"
     }
 ]

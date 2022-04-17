@@ -12,6 +12,9 @@ const Services = ({ service }) => {
                     <Card.Text>
                         {description}
                     </Card.Text>
+                    <Card.Text>
+                        ${price} per hour
+                    </Card.Text>
                     <Button variant="primary">Hire Me</Button>
                 </Card.Body>
             </Card>
