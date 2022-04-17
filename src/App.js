@@ -9,8 +9,13 @@ import NotFound from './components/NotFound/NotFound';
 import Footer from './components/Footer/Footer';
 import Login from './components/Login/Login/Login';
 import SignUp from './components/Login/SignUp/SignUp';
+import RequireAuth from './components/RequireAuth/RequireAuth';
+import ServiceInfo from './components/ServiceInfo/ServiceInfo';
+import useServices from './hooks/useServices';
 
 function App() {
+  const [services] = useServices();
+  services.map(service => console.log(service));
   return (
     <div className="App">
       <Header></Header>
@@ -20,6 +25,11 @@ function App() {
         <Route path="/blogs" element={<Blogs></Blogs>} />
         <Route path="/services" element={<LoadServices></LoadServices>} />
         <Route path="/about" element={<About></About>} />
+        <Route path="/service/:id" element={
+          <RequireAuth>
+            <ServiceInfo data={services}></ServiceInfo>
+          </RequireAuth>
+        } />
         <Route path="/login" element={<Login></Login>} />
         <Route path="/signup" element={<SignUp></SignUp>} />
         <Route path="*" element={<NotFound />} />

@@ -1,13 +1,42 @@
 import React, { useState } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import auth from '../../../firebase.init';
+import Loading from '../Loding/Loading';
 
 const Login = () => {
     const [checked, setChecked] = useState(false);
+    let errorMessage;
+    const navigate = useNavigate();
+    const [
+        signInWithEmailAndPassword,
+        user,
+        loading,
+        error,
+    ] = useSignInWithEmailAndPassword(auth);
+    if (error) {
+        console.log(error.code);
+        if (error.message === 'Firebase: Error (auth/wrong-password).') {
+            errorMessage = 'Wrong Password Please Try Again';
+        }
+        else if (error.message === 'Firebase: Error (auth/user-not-found).') {
+            errorMessage = 'User Not Found. Maybe invalid email or password';
+        }
+        else {
+            errorMessage = error.message;
+        }
+    }
+    if (user) {
+        console.log(user.user);
+        navigate('/');
+    }
     const submitValue = (e) => {
         e.preventDefault();
         const form = e.target;
-        console.log(form.email.value, form.password.value);
+        const email = form.email.value;
+        const password = form.password.value;
+        signInWithEmailAndPassword(email, password);
     }
     return (
         <div>
@@ -34,11 +63,13 @@ const Login = () => {
                         <Form.Check onClick={() => setChecked(!checked)} type="checkbox" label="I agree terms and condition" />
                     </Form.Group>
                     <Button variant="primary" type="submit" disabled={!checked}>
-                        Submit
+                        Login
                     </Button>
                     <br /><br />
+                    {error && <p className='text-danger'>{errorMessage} <br /></p>}
                     Don't have an account? <Link to='/signup'>Sign Up</Link>
                 </Form>
+                {loading && <Loading />}
             </Container>
         </div>
     );

@@ -1,23 +1,14 @@
 import React, { useState } from 'react';
-import { Button, Container, Form, Spinner } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Button, Container, Form } from 'react-bootstrap';
+import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
-const style = {
-    position: 'absolute',
-    height: '100vh',
-    width: '100%',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    top: '0',
-    left: '0',
-    background: '#000',
-    opacity: '0.2'
-}
+import Loading from '../Loding/Loading';
+
 const SignUp = () => {
     const [checked, setChecked] = useState(false);
     const [errorMessage, setError] = useState('');
+    const navigate = useNavigate();
     const [
         createUserWithEmailAndPassword,
         user,
@@ -31,6 +22,7 @@ const SignUp = () => {
     }
     if (user) {
         console.log(user.user);
+        navigate('/');
     }
     const submitValue = (e) => {
         e.preventDefault();
@@ -64,12 +56,10 @@ const SignUp = () => {
                         <Form.Check onClick={() => setChecked(!checked)} type="checkbox" label="I agree terms and condition" />
                     </Form.Group>
                     <Button variant="primary" type="submit" disabled={!checked}>
-                        Submit
+                        Register
                     </Button>
 
-                    {loading && <div style={style}>
-                        <Spinner animation="border" variant="warning" />
-                    </div>}
+                    {loading && <Loading></Loading>}
 
                     {error && <p>{errorMessage}</p>}
                     <br /><br />
