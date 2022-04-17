@@ -5,7 +5,9 @@ import { useNavigate } from 'react-router-dom';
 const Services = ({ service }) => {
     const { name, price, description, image } = service;
     const navigate = useNavigate();
+
     const navigateToId = (id) => {
+        //navigate to the service info page by id
         navigate(`/service/${id}`);
     }
     return (

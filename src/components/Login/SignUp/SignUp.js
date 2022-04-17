@@ -15,19 +15,11 @@ const SignUp = () => {
     const from = location?.state?.from?.pathname || '/services';
 
     const [sendEmailVerification, sending] = useSendEmailVerification(auth);
-    const [
-        createUserWithEmailAndPassword,
-        user,
-        loading,
-        error,
-    ] = useCreateUserWithEmailAndPassword(auth);
+    const [createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(auth);
     if (error) {
-        console.log(error);
         setError(error.message);
-        return;
     }
     if (user) {
-        console.log(user.user);
         navigate(from, { replace: true });
     }
     sending && toast('Sending...');

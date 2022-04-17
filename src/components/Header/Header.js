@@ -6,10 +6,12 @@ import auth from '../../firebase.init';
 import CustomLink from '../CustomLink/CustomLink';
 const Header = () => {
     const [user] = useAuthState(auth);
+
+    //logout
     const logout = () => {
         signOut(auth);
     };
-    user ? console.log(user) : console.log('no user');
+
     return (
         <div>
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">

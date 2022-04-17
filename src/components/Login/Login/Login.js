@@ -10,18 +10,15 @@ import './Login.css'
 
 const Login = () => {
     const [signInWithGoogle, userByGoogle, loadingViaGoogle, errorByGoogle] = useSignInWithGoogle(auth);
-    const [
-        signInWithEmailAndPassword,
-        user,
-        loading,
-        error,
-    ] = useSignInWithEmailAndPassword(auth);
+    const [signInWithEmailAndPassword, user, loading, error,] = useSignInWithEmailAndPassword(auth);
     const [checked, setChecked] = useState(false);
+
     const location = useLocation();
     const from = location?.state?.from?.pathname || '/';
-    let errorMessage;
     const navigate = useNavigate();
-    errorByGoogle && (errorMessage = errorByGoogle.message);
+
+
+    let errorMessage;
     if (error) {
         if (error.message === 'Firebase: Error (auth/wrong-password).') {
             errorMessage = 'Wrong Password Please Try Again';
@@ -33,9 +30,12 @@ const Login = () => {
             errorMessage = error.message;
         }
     }
+    errorByGoogle && (errorMessage = errorByGoogle.message);
+
     //navigating user to the previous page
     user && navigate(from, { replace: true });
     userByGoogle && navigate(from, { replace: true });
+
     //submitting and logging in with email and password
     const submitValue = (e) => {
         e.preventDefault();
@@ -44,6 +44,7 @@ const Login = () => {
         const password = form.password.value;
         signInWithEmailAndPassword(email, password);
     }
+
     //logging in with google
     const handleSignInWithGoogle = () => {
         signInWithGoogle();

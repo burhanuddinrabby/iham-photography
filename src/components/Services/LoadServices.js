@@ -5,7 +5,6 @@ import Services from './Services';
 
 const LoadServices = () => {
     const [services] = useServices();
-    // console.log(services);
     return (
         <div>
             <Container className='mt-5'>

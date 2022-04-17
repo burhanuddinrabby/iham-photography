@@ -9,6 +9,7 @@ import Loading from '../Loading/Loading';
 
 const ForgetPass = () => {
     const [sendPasswordResetEmail, sending, error] = useSendPasswordResetEmail(auth);
+
     let errorMessage;
     if (error) {
         if (error.message === 'Firebase: Error (auth/wrong-password).') {
@@ -21,6 +22,7 @@ const ForgetPass = () => {
             errorMessage = error.message;
         }
     }
+
     const submitValue = async (e) => {
         e.preventDefault();
         const form = e.target;
@@ -31,6 +33,7 @@ const ForgetPass = () => {
             toast('Please check your email for reset password link');
         }
     }
+
     return (
         <div>
             <Container className='mt-5'>
