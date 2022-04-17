@@ -1,5 +1,6 @@
 import React from 'react';
 import { Carousel } from 'react-bootstrap';
+import AutumnEditiing from '../AutumnEditing/AutumnEditiing';
 import LoadServices from '../Services/LoadServices';
 import './Home.css'
 
@@ -53,6 +54,7 @@ const Body = () => {
                 </Carousel.Item>
             </Carousel>
             <LoadServices></LoadServices>
+            <AutumnEditiing></AutumnEditiing>
         </div>
     );
 };

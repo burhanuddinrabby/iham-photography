@@ -88,7 +88,7 @@ const Login = () => {
                     <div></div>
                 </div>
                 {(loading || loadingViaGoogle) && <Loading />}
-                {(loading || loadingViaGoogle) && toast('Loading...')}
+                {(loading || loadingViaGoogle) && toast('Logging in...')}
                 <button className='btn btn-primary mx-auto d-block px-5' onClick={handleSignInWithGoogle}>Sign in with Google</button>
             </Container>
             <ToastContainer />
